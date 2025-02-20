@@ -16,16 +16,19 @@ packer.startup(function(use)
   use 'MunifTanjim/prettier.nvim'
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
-  use 'L3MON4D3/LuaSnip'
-
+  use {
+    "L3MON4D3/LuaSnip",
+    requires = { "rafamadriz/friendly-snippets" },
+  }
+  use { 'saadparwaiz1/cmp_luasnip' }
   use 'kyazdani42/nvim-web-devicons'
-  use 'glepnir/lspsaga.nvim'
+  use { 'glepnir/lspsaga.nvim', commit = 'b7b4777' }
   use 'hoob3rt/lualine.nvim'
   use 'onsails/lspkind-nvim'
+  use 'neovim/nvim-lspconfig'
+  use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/nvim-cmp'
-  use 'neovim/nvim-lspconfig'
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
@@ -41,4 +44,7 @@ packer.startup(function(use)
 
   use 'lewis6991/gitsigns.nvim'
   use 'dinhhuy258/git.nvim'
+  use 'b3nj5m1n/kommentary'
+  use 'mg979/vim-visual-multi'
+  use 'tpope/vim-vinegar' -- For easier netrw navigation
 end)

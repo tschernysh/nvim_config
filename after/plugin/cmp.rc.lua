@@ -3,12 +3,13 @@ if not snip_status_ok then
   return
 end
 
+require("luasnip.loaders.from_vscode").load()
+
 local status, cmp = pcall(require, "cmp")
 if (not status) then return end
 local lspkind = require 'lspkind'
 
 
-require("luasnip.loaders.from_vscode").lazy_load()
 
 local function formatForTailwindCSS(entry, vim_item)
   if vim_item.kind == 'Color' and entry.completion_item.documentation then
@@ -33,8 +34,8 @@ end
 cmp.setup {
   snippet = {
     expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end
+      luasnip.lsp_expand(args.body) -- For `luasnip` users.
+    end,
   },
   mapping = cmp.mapping.preset.insert({
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
@@ -46,12 +47,12 @@ cmp.setup {
       select = true
     }),
   }),
-  sources = cmp.config.sources({
+  sources = {
     -- ordered by priority
     { name = "nvim_lsp",               keyword_length = 1 },
     { name = "nvim_lsp_signature_help" }, { name = "luasnip" },
     { name = "path" }, { name = "buffer" }, { name = "nvim_lua" }
-  }),
+  },
   formatting = {
     format = lspkind.cmp_format({
       maxwidth = 50,

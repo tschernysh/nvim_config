@@ -4,7 +4,6 @@ vim.scriptencoding = 'utf-8'
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
 
-
 vim.wo.number = true
 
 vim.opt.title = true
@@ -36,8 +35,16 @@ vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
 vim.api.nvim_create_autocmd("InsertLeave", {
- pattern = '*',
- command = "set nopaste"
+  pattern = '*',
+  command = "set nopaste"
 })
+-- autoread
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+  command = "if mode() != 'c' | checktime | endif",
+  pattern = { "*" },
+})
+
+vim.cmd [[colorscheme neosolarized]]
 
 vim.opt.formatoptions:append { 'r' }

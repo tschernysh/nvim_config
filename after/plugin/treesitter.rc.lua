@@ -1,7 +1,7 @@
 local status, ts = pcall(require, "nvim-treesitter.configs")
 if (not status) then return end
 
-ts.setup {
+require('nvim-ts-autotag').setup {
   highlight = {
     enable = true,
     disable = {},
@@ -21,6 +21,7 @@ ts.setup {
   },
 }
 
+vim.cmd('autocmd VimEnter * TSToggle highlight')
 
 
 require "nvim-treesitter.parsers".get_parser_configs().solidity = {

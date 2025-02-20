@@ -1,14 +1,7 @@
 local status, saga = pcall(require, "lspsaga")
 if (not status) then return end
 
-saga.setup({
-  ui = {
-    winblend = 10,
-    border = 'rounded',
-    colors = {
-      normal_bg = '#002b36'
-    }
-  }
+saga.init_lsp_saga({
 })
 
 local diagnostic = require("lspsaga.diagnostic")
